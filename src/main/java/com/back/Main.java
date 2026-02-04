@@ -43,12 +43,23 @@ public class Main {
 
                     System.out.printf("%d / %s / %s%n", str.id, str.content, str.author);
                 }
-            } else if (cmd.contains("삭제?id=")) {
+            } else if (cmd.startsWith("삭제?id=")) {
                 String[] num = cmd.split("=");
                 int id_num = Integer.parseInt(num[1]);
+                boolean check = false;
 
-                wiseSaying.remove(id_num - 1);
-                System.out.printf("%d번 명언이 삭제되었습니다.\n", id_num);
+                for (int i = 0; i < wiseSaying.size(); i++) {
+                    if (wiseSaying.get(i).id == id_num) {
+                        wiseSaying.remove(i);
+                        System.out.printf("%d번 명언이 삭제되었습니다.\n", id_num);
+                        check = true;// boolean 처리 필요
+                        break;
+                    }
+                }
+
+                if (!check) {
+                    System.out.printf("%d번 명언은 존재하지 않습니다.\n", id_num);
+                }
             }
         }
     }
