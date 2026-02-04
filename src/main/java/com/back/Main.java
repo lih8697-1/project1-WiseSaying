@@ -20,16 +20,16 @@ public class Main {
 
         while (true) {
             System.out.print("명령) ");
-            cmd = sc.next();
+            cmd = sc.nextLine();
 
             if (cmd.equals("종료")) {
                 break;
             } else if (cmd.equals("등록")) {
                 System.out.print("명언 : ");
-                content = sc.next();
+                content = sc.nextLine();
 
                 System.out.print("작가 : ");
-                author = sc.next();
+                author = sc.nextLine();
 
                 id = ++lastIndex;
                 wiseSaying.add(new WiseSaying(id, content, author));
@@ -41,7 +41,7 @@ public class Main {
                 for (int i = wiseSaying.size() - 1; i >= 0; i--) {
                     WiseSaying str = wiseSaying.get(i);
 
-                    System.out.printf("%d / %s / %s%n", str.id, str.content, str.author);
+                    System.out.printf("%d / %s / %s%n", str.id, str.author, str.content);
                 }
             } else if (cmd.startsWith("삭제?id=")) {
                 String[] num = cmd.split("=");
@@ -58,6 +58,28 @@ public class Main {
                 }
 
                 if (!check) {
+                    System.out.printf("%d번 명언은 존재하지 않습니다.\n", id_num);
+                }
+            } else if (cmd.startsWith("수정?id=")) {
+                String[] num = cmd.split("=");
+                int id_num = Integer.parseInt(num[1]);
+                boolean check = false;
+
+                for(WiseSaying ws : wiseSaying){
+                    if (ws.id == id_num){
+                        System.out.println("명언(기존) " + ws.content);
+                        System.out.print("명언 : ");
+                        ws.content = sc.nextLine();
+
+                        System.out.println("작가(기존) " + ws.author);
+                        System.out.print("작가 : ");
+                        ws.author = sc.nextLine();
+                        check = true;
+                        break;
+                    }
+                }
+
+                if(!check) {
                     System.out.printf("%d번 명언은 존재하지 않습니다.\n", id_num);
                 }
             }
