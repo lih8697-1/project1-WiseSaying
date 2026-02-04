@@ -1,5 +1,6 @@
 package com.back;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +10,7 @@ public class Main {
         String author;
         int lastIndex = 0;
 
+        List<String>
         Scanner sc = new Scanner(System.in);
 
         System.out.println("== 명언 앱 ==");
